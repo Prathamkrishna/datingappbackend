@@ -1,0 +1,54 @@
+package com.example.datingapps.controllers;
+
+//import com.example.datingapps.utils.jwtutil;
+//import org.springframework.security.authentication.BadCredentialsException;
+//import org.springframework.security.core.userdetails.UserDetails;
+import com.example.datingapps.api.AuthenticationRequest;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Arrays;
+
+@RestController
+public class createuser {
+    private static String token;
+    @PostMapping("/postuserdetails")
+//    change String userdata to classname objectname
+    public static String addUserDetails(@RequestBody AuthenticationRequest userdata) {
+//        try {
+//            token = new jwtutil().generateToken(userdata);
+//        } catch (BadCredentialsException e){
+//            System.out.println(e);
+//        }
+//        new jwtutil().validateToken(token, userdata);
+        System.out.println("hi");
+//        token = userdata;
+        return "okai";
+    }
+
+    @GetMapping("/random")
+    public static String sendRandom(){
+        return token;
+    }
+
+    @PostMapping(value = "/image/upload")
+    public static void uploadImage(@RequestParam("image")MultipartFile file, RedirectAttributes redirectAttributes) throws Exception{
+        byte[] bytes = file.getBytes();
+//        add create and write to file
+        try {
+            Path path = Paths.get("Users/prathamkrishna/Desktop/work/datingapps/src/main/java/com/example/datingapps/userimages/", file.getOriginalFilename());
+            Files.createFile(path);
+            Files.write(path, bytes);
+            redirectAttributes.addFlashAttribute("message",
+                    "You successfully uploaded '" + file.getOriginalFilename() + "'");
+            System.out.println("hii");
+        } catch (Exception e){
+            System.out.println("Error" + e);
+        }
+    }
+}
