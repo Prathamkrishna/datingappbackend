@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -39,10 +40,12 @@ public class createuser {
     @PostMapping(value = "/image/upload")
     public static void uploadImage(@RequestParam("image")MultipartFile file, RedirectAttributes redirectAttributes) throws Exception{
         byte[] bytes = file.getBytes();
+        System.out.println(file.getOriginalFilename() + "fie");
 //        add create and write to file
         try {
-            Path path = Paths.get("Users/prathamkrishna/Desktop/work/datingapps/src/main/java/com/example/datingapps/userimages/", file.getOriginalFilename());
-            Files.createFile(path);
+            File userimagefile = new File("/Users/prathamkrishna/Desktop/work/datingapps/src/main/resources/userimages/" + file.getOriginalFilename());
+            Path path = Paths.get("/Users/prathamkrishna/Desktop/work/datingapps/src/main/resources/userimages/" + file.getOriginalFilename());
+            userimagefile.createNewFile();
             Files.write(path, bytes);
             redirectAttributes.addFlashAttribute("message",
                     "You successfully uploaded '" + file.getOriginalFilename() + "'");
