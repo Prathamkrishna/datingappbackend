@@ -2,31 +2,30 @@ package com.example.datingapps.api;
 
 public class AuthenticationRequest{
     private static String username;
-    private static String password;
+    private static int age;
+    private static String email;
 
-    public static byte[] getBytes() {
-        return bytes;
-    }
-
-    public static void setBytes(byte[] bytes) {
-        AuthenticationRequest.bytes = bytes;
-    }
-
-    private static byte[] bytes;
-
-    public String getUsername() {
+    public static String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public static void setUsername(String username) {
+        AuthenticationRequest.username = username;
     }
 
-    public String getPassword() {
-        return password;
+    public static int getAge() {
+        return age;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public static void setAge(int age) {
+        AuthenticationRequest.age = age;
+    }
+
+    public static String getEmail() {
+        return email;
+    }
+
+    public static void setEmail(String email) {
+        AuthenticationRequest.email = email;
     }
 }

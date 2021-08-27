@@ -17,7 +17,7 @@ import java.util.Arrays;
 
 @RestController
 public class createuser {
-    private static String token;
+    private static String token = "hello";
     @PostMapping("/postuserdetails")
 //    change String userdata to classname objectname
     public static String addUserDetails(@RequestBody AuthenticationRequest userdata) {
@@ -32,16 +32,15 @@ public class createuser {
         return "okai";
     }
 
-    @GetMapping("/random")
-    public static String sendRandom(){
-        return token;
+    @PostMapping("/user/postlogindetails")
+    public static void postLoginDetails(@RequestBody AuthenticationRequest authenticationRequest){
+        System.out.println(authenticationRequest.getUsername());
     }
 
     @PostMapping(value = "/image/upload")
     public static void uploadImage(@RequestParam("image")MultipartFile file, RedirectAttributes redirectAttributes) throws Exception{
         byte[] bytes = file.getBytes();
-        System.out.println(file.getOriginalFilename() + "fie");
-//        add create and write to file
+        System.out.println(file.getOriginalFilename() + " fie");
         try {
             File userimagefile = new File("/Users/prathamkrishna/Desktop/work/datingapps/src/main/resources/userimages/" + file.getOriginalFilename());
             Path path = Paths.get("/Users/prathamkrishna/Desktop/work/datingapps/src/main/resources/userimages/" + file.getOriginalFilename());
