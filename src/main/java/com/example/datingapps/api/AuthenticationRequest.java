@@ -1,31 +1,31 @@
 package com.example.datingapps.api;
 
 public class AuthenticationRequest{
-    private static String username;
-    private static int age;
-    private static String email;
+    private String username;
+    private int age;
+    private String email;
 
-    public static String getUsername() {
+    public String getUsername() {
         return username;
     }
 
-    public static void setUsername(String username) {
-        AuthenticationRequest.username = username;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public static int getAge() {
+    public int getAge() {
         return age;
     }
 
-    public static void setAge(int age) {
-        AuthenticationRequest.age = age;
+    public void setAge(int age) {
+        this.age = age;
     }
 
-    public static String getEmail() {
+    public String getEmail() {
         return email;
     }
 
-    public static void setEmail(String email) {
-        AuthenticationRequest.email = email;
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

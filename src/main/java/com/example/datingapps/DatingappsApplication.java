@@ -1,12 +1,12 @@
 package com.example.datingapps;
 
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.core.env.Environment;
+
+import com.example.datingapps.utils.jwtutil;
 
 import java.io.IOException;
-import com.example.datingapps.services.spotifyservice;
 
 @SpringBootApplication
 public class DatingappsApplication {
@@ -25,8 +25,12 @@ public class DatingappsApplication {
 //        } catch (Exception e){
 //            System.out.println(e);
 //        }
-
-
+//        jwtutil.jwtToken("abc");
     }
 
+//    CommandLineRunner run(Authentication authentication){
+//        return args -> {
+//            authentication.
+//        };
+//    }
 }

@@ -1,54 +1,24 @@
-//package com.example.datingapps.utils;
-//
-//import io.jsonwebtoken.Claims;
-//import io.jsonwebtoken.Jwts;
-//import io.jsonwebtoken.SignatureAlgorithm;
-//import org.springframework.security.core.userdetails.UserDetails;
-//import org.springframework.stereotype.Service;
-//
-//import java.util.Date;
-//import java.util.HashMap;
-//import java.util.Map;
-//import java.util.function.Function;
-//
-//@Service
-//public class jwtutil {
-//    private String SECRET_KEY = "secret";
-//
-//    public String extractUsername(String token) {
-//        return extractClaim(token, Claims::getSubject);
-//    }
-//
-//    public String generateToken(UserDetails userDetails) {
-//        Map<String, Object> claims = new HashMap<>();
-//        return createToken(claims, userDetails.getUsername());
-//    }
-//
-//    private Claims extractAllClaims(String token) {
-//        return Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody();
-//    }
-//
-//    public Date extractExpiration(String token) {
-//        return extractClaim(token, Claims::getExpiration);
-//    }
-//
-//    private Boolean isTokenExpired(String token) {
-//        return extractExpiration(token).before(new Date());
-//    }
-//
-//    public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
-//        final Claims claims = extractAllClaims(token);
-//        return claimsResolver.apply(claims);
-//    }
-//
-//    private String createToken(Map<String, Object> claims, String subject) {
-//        return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
-//                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10))
-//                .signWith(SignatureAlgorithm.HS256, SECRET_KEY).compact();
-//    }
-//
-//    public Boolean validateToken(String token, UserDetails userDetails) {
-//        final String username = extractUsername(token);
-//        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
-//    }
-//}
+package com.example.datingapps.utils;
+
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
+
+import java.nio.charset.StandardCharsets;
+import java.util.Date;
+
+public class jwtutil {
+
+    public static String jwtToken(String subject){
+        //    encrypt the token and while passing here decrypt it
+        Algorithm algorithm = Algorithm.HMAC256("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9".getBytes());
+        String access_token = JWT.create()
+                .withSubject(subject)
+                .withExpiresAt(new Date(System.currentTimeMillis() + 10 * 60 * 1000))
+                .withIssuer("Dating app")
+                .sign(algorithm);
+        System.out.println(access_token + "abc");
+        return access_token;
+    }
+
+
+}

@@ -13,8 +13,8 @@ public class userspotifyaccesstoken {
 
     @PostMapping("/user/spotify/token")
     protected void getUserSpotifyToken(@RequestBody spotifytoken token){
-        System.out.println(token.getToken());
-        new spotifyservice(token.getToken());
+        spotifyservice spotifyApiResponse = new spotifyservice(token.getToken());
         spotifyservice.getUserSpotifyData();
+        System.out.println(spotifyApiResponse);
     }
 }
