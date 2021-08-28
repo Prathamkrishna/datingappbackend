@@ -1,15 +1,21 @@
 package com.example.datingapps.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class SpotifyUserData {
-    private String username;
+//    @JsonIgnoreProperties
+//    @JsonProperty("display_name")
+    private String display_name;
+//    @JsonProperty("email")
     private String email;
 
-    public String getUsername() {
-        return username;
+    public String getDisplay_name() {
+        return display_name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setDisplay_name(String display_name) {
+        this.display_name = display_name;
     }
 
     public String getEmail() {
